@@ -1,7 +1,13 @@
+using eGrocer.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<eGrocerDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("eGrocerDbContext")));
 
 var app = builder.Build();
 
